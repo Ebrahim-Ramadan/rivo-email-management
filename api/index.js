@@ -57,7 +57,7 @@ app.post('/send-email', (req, res) => {
     return res.status(400).json({ error: 'Email, orderID, and clientName are required' });
   }
   if (!secret_token || secret_token !=process.env.secret_token) {
-    return res.status(400).json({ error: 'You are not ebrahim lol' });
+    return res.status(400).json({ error: 'You are not authorized' });
   }
 
 
@@ -77,7 +77,7 @@ app.post('/send-email', (req, res) => {
       return res.status(500).json({ error: 'Error sending email' });
     } else {
       console.log(`Email sent to ${email}: ${info.response}`);
-      return res.status(200).json({ message: `Email sent to ${email}` });
+      return res.status(200).json({ message: `Email sent to ${email} successfully` });
     }
   });
 });
