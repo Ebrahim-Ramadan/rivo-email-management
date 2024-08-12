@@ -51,11 +51,15 @@ const emailContentTemplate = `
 
 app.post('/send-email', (req, res) => {
   console.log('req.body', req.body);
-  const { email, orderID, clientName } = req.body;
+  const { email, orderID, clientName, secret_token } = req.body;
 
   if (!email || !clientName || !orderID) {
     return res.status(400).json({ error: 'Email, orderID, and clientName are required' });
   }
+  if (!secret_token || secret_token !=process.env.secret_token) {
+    return res.status(400).json({ error: 'You are not ebrahim lol' });
+  }
+
 
   let emailContent = emailContentTemplate.replace(/\[clientName\]/g, clientName);
   emailContent = emailContent.replace(/\[orderID\]/g, orderID);
