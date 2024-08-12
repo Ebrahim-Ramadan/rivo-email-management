@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -19,7 +18,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const subject = 'Order Confirmation | Rivo Gallery';
+const subject = 'DONOT REPLY - Order Confirmation | Rivo Gallery';
 const emailContentTemplate = `
 <div>
   <div>
@@ -69,7 +68,7 @@ app.post('/send-email', (req, res) => {
     to: email,
     subject: subject,
     html: emailContent,
-  };
+  }
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
